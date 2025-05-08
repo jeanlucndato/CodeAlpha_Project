@@ -1,0 +1,75 @@
+Étape 1 : Choisir le Langage de Programmation et l'Application
+
+Sélectionnez un Langage de Programmation : Choisissez un langage avec lequel vous êtes familier ou que vous souhaitez apprendre davantage en matière de sécurité. Les choix courants incluent Python, Java, JavaScript, C#, PHP, etc.
+Sélectionnez une Application ou un Fragment de Code :
+Option 1 (Application Existante) : Si vous avez accès au code source d'une petite application personnelle, d'un projet open source modeste, ou même d'un exemple de code fourni dans un tutoriel, cela peut être un excellent point de départ. Assurez-vous que la taille du code est gérable pour une revue approfondie.
+Option 2 (Fragment de Code Spécifique) : Vous pouvez vous concentrer sur une fonctionnalité particulière d'une application (par exemple, la gestion des utilisateurs, le traitement des entrées de formulaire, les interactions avec une base de données). Isolez le code pertinent pour cette fonctionnalité.
+Option 3 (Code Synthétique) : Si vous n'avez pas de code existant sous la main, vous pouvez écrire un petit programme ou une fonction simple dans le langage choisi, en y introduisant intentionnellement certaines pratiques de codage potentiellement non sécurisées pour ensuite les identifier.
+Étape 2 : Préparer l'Environnement et les Outils (si applicable)
+
+Installation des Outils d'Analyse Statique (Optionnel mais recommandé) : Si vous prévoyez d'utiliser un outil d'analyse statique, installez-le. Voici quelques exemples courants (la disponibilité dépendra du langage choisi) :
+Python : flake8, bandit, pylint (avec des plugins de sécurité)
+Java : SonarQube, FindBugs (succédé par SpotBugs), Checkstyle (avec des règles de sécurité)
+JavaScript : ESLint (avec des plugins de sécurité comme eslint-plugin-security), SonarQube, Snyk
+PHP : PHPStan, Psalm, RIPS (payant)
+C# : SonarQube, Roslyn Analyzers (intégrés à Visual Studio), Veracode (payant)
+Configuration de l'Outil (si nécessaire) : Certains outils peuvent nécessiter une configuration initiale pour activer les règles d'analyse de sécurité spécifiques. Consultez la documentation de l'outil.
+Étape 3 : Examiner le Code Source
+
+Vous pouvez aborder cette étape de deux manières, ou en combinant les deux :
+
+Revue Manuelle du Code :
+
+Lisez attentivement le code ligne par ligne. Essayez de comprendre la logique et le flux des données.
+Concentrez-vous sur les points d'interaction avec des entrées externes :
+Lecture de fichiers
+Saisie utilisateur (formulaires, arguments de ligne de commande, etc.)
+Requêtes réseau
+Interactions avec des bases de données
+Désérialisation de données
+Recherchez les motifs de code suspects qui pourraient indiquer des vulnérabilités courantes (mentionnées dans ma réponse précédente sur la revue de code sécurisé). Posez-vous des questions comme :
+Les entrées utilisateur sont-elles validées et nettoyées correctement ?
+Les requêtes de base de données sont-elles construites de manière sécurisée (en utilisant des requêtes paramétrées) ?
+Les données sensibles sont-elles correctement encodées avant d'être affichées dans une interface web ?
+Y a-t-il des risques de dépassement de mémoire tampon ?
+La gestion des erreurs révèle-t-elle des informations sensibles ?
+L'authentification et l'autorisation sont-elles implémentées correctement ?
+Référez-vous aux bonnes pratiques de codage sécurisé pour le langage que vous avez choisi. Des ressources comme l'OWASP (Open Web Application Security Project) sont très utiles.
+Utilisation d'Outils d'Analyse Statique :
+
+Exécutez l'outil d'analyse statique sur votre code. Suivez les instructions de l'outil pour lancer l'analyse.
+Examinez les résultats (avertissements, erreurs, "findings"). Chaque outil générera un rapport listant les problèmes potentiels qu'il a détectés, souvent avec une description et une sévérité estimée.
+Faites le tri entre les faux positifs et les vrais problèmes. Certains avertissements peuvent ne pas être de réelles vulnérabilités dans le contexte de votre code.
+Comprenez pourquoi l'outil a signalé chaque problème. Cela vous aidera à apprendre les vulnérabilités et comment les éviter à l'avenir.
+Étape 4 : Identifier les Vulnérabilités de Sécurité
+
+Documentez chaque vulnérabilité que vous trouvez. Pour chaque vulnérabilité, notez :
+L'emplacement dans le code (fichier et ligne).
+La description de la vulnérabilité (quel est le problème de sécurité ?).
+L'impact potentiel (qu'est-ce qu'un attaquant pourrait faire en exploitant cette vulnérabilité ?).
+La sévérité (faible, moyenne, élevée, critique).
+Étape 5 : Fournir des Recommandations pour les Pratiques de Codage Sécurisé
+
+Pour chaque vulnérabilité identifiée, proposez une ou plusieurs solutions concrètes pour la corriger. Indiquez les modifications spécifiques à apporter au code.
+Élargissez vos recommandations en proposant des pratiques de codage sécurisé générales qui auraient pu prévenir ces vulnérabilités et devraient être suivies à l'avenir. Ces recommandations devraient être spécifiques au langage et au contexte de votre application. Par exemple :
+"Toujours valider les entrées utilisateur avant de les utiliser dans une requête SQL."
+"Utiliser des fonctions d'échappement appropriées pour afficher des données fournies par l'utilisateur dans une page web."
+"Éviter de stocker des secrets (mots de passe, clés API) directement dans le code ; utiliser des variables d'environnement ou un gestionnaire de secrets."
+"Mettre à jour régulièrement les librairies et les dépendances pour corriger les vulnérabilités connues."
+Étape 6 : Documenter Votre Travail
+
+Créez un rapport de revue de code sécurisé. Ce rapport devrait inclure :
+Une introduction décrivant l'objectif de la revue, le langage et l'application examinés.
+Une méthodologie expliquant comment vous avez effectué la revue (manuelle, outils utilisés, etc.).
+Les vulnérabilités identifiées (avec leur description, emplacement, impact et sévérité).
+Les recommandations pour la correction de chaque vulnérabilité.
+Les recommandations générales pour les pratiques de codage sécurisé.
+Une conclusion résumant vos findings et les prochaines étapes potentielles.
+Conseils Supplémentaires :
+
+Commencez petit : Si c'est votre première revue de code sécurisé, choisissez un morceau de code simple pour ne pas être submergé.
+Soyez méthodique : Suivez une approche structurée pour examiner le code.
+Apprenez des ressources existantes : Consultez les guides de sécurité spécifiques au langage (par exemple, les guides OWASP pour Java, Python, etc.).
+Soyez précis dans vos recommandations : Indiquez clairement comment corriger les problèmes.
+Soyez positif et constructif : L'objectif est d'améliorer la sécurité, pas de critiquer le code ou le développeur.
+En suivant ces étapes, vous pourrez réaliser un projet de "Secure Coding Review" significatif et apprendre beaucoup sur les aspects de la sécurité dans le développement logiciel. N'hésitez pas si vous avez d'autres questions !

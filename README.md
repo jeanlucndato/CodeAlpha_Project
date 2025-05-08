@@ -48,8 +48,8 @@ This project, a packet analyzer, represents my first undertaking as a cybersecur
 1.  **Clone the repository:**
 
     ```bash
-    git clone [repository URL]
-    cd [repository directory]
+    git clone https://github.com/jeanlucndato/CodeAlpha_Project
+    cd CodeAlpha_Project
     ```
 
 2.  **Run the script:**
